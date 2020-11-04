@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jawara/app/app.dart';
 import 'package:jawara/app/locator.dart';
 import 'package:jawara/core/service/services.dart';
+import 'package:jawara/ui/pages.dart';
 import 'package:stacked/stacked.dart';
 
 // child
 part 'splash/splash.dart';
+part 'auth/auth.dart';
 
 //? ----------
 //* Service

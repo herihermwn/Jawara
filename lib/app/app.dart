@@ -8,6 +8,7 @@ Color get whiteColor => Colors.white;
 Color get darkTextColor => Color(0xFF747474);
 Color get inputBackgroundColor => Color(0xFFEEEEEE);
 Color get scaffoldBackgroundColor => Color(0xFFF8F8F8);
+Color get disableButton => Color(0xFFBEBEBE);
 Color get yellowColor => Color(0xFFF9C12D);
 Color get purpleColor => Color(0xFF503E9D);
 Color get greenColor => Color(0xFF3E9D9D);
@@ -26,9 +27,10 @@ ThemeData get appTheme => ThemeData(
       primaryColor: iconColor1,
       accentColor: iconColor4,
       cardColor: whiteColor,
-      textTheme: GoogleFonts.poppinsTextTheme().apply(
-        bodyColor: Colors.black87
-      ),
+      hintColor: iconColor4,
+      buttonColor: iconColor4,
+      textTheme:
+          GoogleFonts.poppinsTextTheme().apply(bodyColor: Colors.black87),
     );
 
 //? -------------------
@@ -63,7 +65,13 @@ String imageAsset = "assets/images";
 PreferredSize get noAppBar => PreferredSize(
       preferredSize: Size.fromHeight(0),
       child: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: iconColor5,
         brightness: Brightness.dark,
       ),
     );
+
+//? ------------------
+/// [Constant RegExp]
+//? ------------------
+Pattern emailPattern =
+    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';

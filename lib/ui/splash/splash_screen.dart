@@ -24,9 +24,12 @@ class SplashScreen extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(
-                        "$imageAsset/icon_jawara.png",
-                        width: 350.w,
+                      Hero(
+                        tag: "icon_jawara",
+                        child: Image.asset(
+                          "$imageAsset/icon_jawara.png",
+                          width: 350.w,
+                        ),
                       ),
                       TextFormat(
                         "Jawara",
