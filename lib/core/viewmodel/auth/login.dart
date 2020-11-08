@@ -49,7 +49,7 @@ class LoginViewmodel extends BaseViewModel with ViewModelLifecycle {
     // Do Auth here
     AwesomeDialog dialog = awesomeDialog.showLoadingDialog();
     Future.delayed(Duration(seconds: 3), () {
-      if (emailController.text == "herih1876@gmail.com" &&
+      if (emailController.text == "test@gmail.com" &&
           passwordController.text == "1234567") {
         dialog.dissmiss();
         replacePage(HomePage());

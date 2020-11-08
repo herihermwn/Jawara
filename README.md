@@ -2,6 +2,9 @@
 
 ## 📸 Demo Android
 APK & Video Demo : https://drive.google.com/drive/folders/1CBpodyXiaKBsyc_FxsWHqVf7IKgamOZR?usp=sharing
+#### Account for Demo
+##### Email : test@gmail.com
+##### Password : 1234567
 
 ## 📁 Direktori
     # Root Project
