@@ -151,15 +151,19 @@ class SelfInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
             ),
           ),
           InputField(
+            prefixIcon: Icon(Icons.account_circle),
             hint: "Nama Lengkap",
             textSize: 42.ssp,
             controller: viewmodel.nameController,
             inputType: TextInputType.text,
-            validateInput: viewmodel.checkName,
+            validateInput: (value) {
+              return viewmodel.checkValue(value, 0);
+            },
             maxInput: 30,
           ),
           SizedBox(height: 40.h),
           InputField(
+            prefixIcon: Icon(Icons.phone),
             hint: "Nomor Telepon",
             textSize: 42.ssp,
             controller: viewmodel.phoneNumberController,
@@ -243,14 +247,47 @@ class InstitutionalInformation
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.home),
+              Icon(Icons.domain),
               SizedBox(width: 50.w),
               TextFormat(
-                'Informasi instansi',
+                'Informasi institusi',
                 fontWeight: FontWeight.bold,
                 fontSize: 44.ssp,
               ),
             ],
+          ),
+          SizedBox(height: 180.h),
+          InputField(
+            prefixIcon: Icon(Icons.apartment),
+            hint: "Institusi",
+            textSize: 42.ssp,
+            controller: viewmodel.institutionalController,
+            inputType: TextInputType.text,
+            validateInput: (value) {
+              return viewmodel.checkValue(value, 1);
+            },
+          ),
+          SizedBox(height: 90.h),
+          InputField(
+            prefixIcon: Icon(MdiIcons.sealVariant),
+            hint: "Jabatan",
+            textSize: 42.ssp,
+            controller: viewmodel.positionController,
+            inputType: TextInputType.number,
+            validateInput: (value) {
+              return viewmodel.checkValue(value, 2);
+            },
+          ),
+          SizedBox(height: 90.h),
+          InputField(
+            prefixIcon: Icon(Icons.place),
+            hint: "Lokasi",
+            textSize: 42.ssp,
+            controller: viewmodel.placeController,
+            inputType: TextInputType.number,
+            validateInput: (value) {
+              return viewmodel.checkValue(value, 3);
+            },
           ),
         ],
       ),

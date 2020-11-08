@@ -3,14 +3,37 @@ part of '../viewmodels.dart';
 enum Gender { Pria, Wanita }
 
 class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
+  //* SelfInformation
+  bool _isPNumberValid = false;
+  bool _isNameValid = false;
+
   File imageFile;
   Gender selectedGender = Gender.Pria;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+
+  bool get isSelfInformationValid =>
+      _isPNumberValid && _isNameValid && (imageFile != null);
+
+  //* InstitutionalInformation
+  bool _isInstitutional = false;
+  bool _isPosition = false;
+  bool _isPlace = false;
+
+  TextEditingController institutionalController = TextEditingController();
+  TextEditingController positionController = TextEditingController();
+  TextEditingController placeController = TextEditingController();
+
+  bool get isInstitutionalInformationValid =>
+      _isInstitutional && _isPosition && _isPlace;
+
+  //* AccountInformation
+
+  bool get isAccountInformationValid =>
+      _isPNumberValid && _isNameValid && (imageFile != null);
 
   GlobalKey<PageSliderState> sliderKey = GlobalKey();
   int currentIndex = 1;
-
 
   Future<void> getImage() async {
     imageFile = await imagePicker.getImagefromGalery();
@@ -25,12 +48,6 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
   //* =============
   //? Validator
   //* =============
-  bool _isPNumberValid = false;
-  bool _isNameValid = false;
-
-  bool get isSelfInformationValid => _isPNumberValid && _isNameValid && (imageFile != null);
-  bool get isInstitutionalInformationValid => _isPNumberValid && _isNameValid && (imageFile != null);
-  bool get isAccountInformationValid => _isPNumberValid && _isNameValid && (imageFile != null);
 
   Map<String, dynamic> checkPNumber(String p1) {
     bool isValid = true;
@@ -49,16 +66,32 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
     };
   }
 
-  Map<String, dynamic> checkName(String p1) {
+  Map<String, dynamic> checkValue(String p1, int code) {
     bool isValid = true;
     String errorMessage = "";
 
     if (p1.length < 2) {
       isValid = false;
-      errorMessage = "Nama minimal 2 huruf";
+      errorMessage = "Minimal 2 huruf";
     }
 
-    _isNameValid = isValid;
+    switch (code) {
+      case 0:
+        _isNameValid = isValid;
+        break;
+      case 1:
+        _isInstitutional = isValid;
+        break;
+      case 2:
+        _isPosition = isValid;
+        break;
+      case 3:
+        _isPlace = isValid;
+        break;
+      default:
+        _isNameValid = isValid;
+    }
+
     notifyListeners();
     return {
       "isValid": isValid,
@@ -71,7 +104,6 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
     notifyListeners();
   }
 
-  
   void next() {
     if (currentIndex < 3) {
       currentIndex++;

@@ -13,3 +13,13 @@ bool isEmail(String p1) {
     return true;
   }
 }
+
+bool checkLengthString(String p1, {int length}) {
+  bool isValid = true;
+
+  if (p1.length < length ?? 2) {
+    isValid = false;
+  }
+
+  return isValid;
+}
