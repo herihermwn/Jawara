@@ -29,6 +29,19 @@ class NavigatorService {
     );
   }
 
+  Future<dynamic> replaceAllWithTransition(
+    Widget page, {
+    Transition transition,
+    Duration duration,
+  }) {
+    return Get.offAll(
+      page,
+      transition: transition ?? Transition.fade,
+      duration: duration ?? Get.defaultTransitionDuration,
+      curve: Curves.easeInOutBack,
+    );
+  }
+
   void back({dynamic result, int id}) {
     Get.close(1);
   }

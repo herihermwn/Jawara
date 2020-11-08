@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jawara/app/locator.dart';
@@ -10,6 +11,7 @@ import 'dart:io';
 
 // child
 part 'splash/splash.dart';
+part 'home/home.dart';
 
 /// [child]
 part 'auth/login.dart';
@@ -20,13 +22,29 @@ part 'auth/register.dart';
 //? ----------
 final navigation = locator<NavigatorService>();
 final imagePicker = locator<ImagePickerService>();
+final awesomeDialog = locator<AwesomeDialogService>();
 
 //? -----------
 //* Navigator
 //? -----------
-Future<void> replacePage(Widget page,
-    {Transition transition, Duration duration}) async {
+Future<void> replacePage(
+  Widget page, {
+  Transition transition,
+  Duration duration,
+}) async {
   await navigation.replaceWithTransition(
+    page,
+    transition: transition ?? Transition.rightToLeftWithFade,
+    duration: duration ?? Duration(milliseconds: 500),
+  );
+}
+
+Future<void> replaceAllPage(
+  Widget page, {
+  Transition transition,
+  Duration duration,
+}) async {
+  await navigation.replaceAllWithTransition(
     page,
     transition: transition ?? Transition.rightToLeftWithFade,
     duration: duration ?? Duration(milliseconds: 500),

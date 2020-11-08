@@ -13,3 +13,5 @@ part 'splash/splash_screen.dart';
 /// [Auth]
 part 'auth/login.dart';
 part 'auth/register.dart';
+/// [Auth]
+part 'home/home.dart';

@@ -177,4 +177,18 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
     }
     notifyListeners();
   }
+
+  void register() {
+    // Do Auth here
+    AwesomeDialog dialog = awesomeDialog.showLoadingDialog();
+    Future.delayed(Duration(seconds: 3), () {
+      dialog.dissmiss();
+      awesomeDialog.showSuccessDialog(
+        message: "Berhasil mendaftarkan akun",
+        onClick: () {
+          replaceAllPage(HomePage());
+        },
+      );
+    });
+  }
 }

@@ -116,8 +116,8 @@ class SelfInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
               }
             },
             child: Container(
-              width: 240.w,
-              height: 240.w,
+              width: 260.w,
+              height: 260.w,
               margin: EdgeInsets.only(
                 top: 120.h,
                 bottom: 90.h,
@@ -129,6 +129,7 @@ class SelfInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
                   color: iconColor4,
                 ),
                 image: DecorationImage(
+                  fit: BoxFit.cover,
                   image: (viewmodel.imageFile == null)
                       ? AssetImage("$imageAsset/user_pic.png")
                       : FileImage(viewmodel.imageFile),
@@ -137,7 +138,7 @@ class SelfInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
               child: Stack(
                 children: [
                   Align(
-                    alignment: Alignment(0, 1.7),
+                    alignment: Alignment(0, 1.5),
                     child: Image.asset(
                       (viewmodel.imageFile == null)
                           ? "$imageAsset/btn_add_photo.png"
@@ -273,7 +274,7 @@ class InstitutionalInformation
             hint: "Jabatan",
             textSize: 42.ssp,
             controller: viewmodel.positionController,
-            inputType: TextInputType.number,
+            inputType: TextInputType.text,
             validateInput: (value) {
               return viewmodel.checkValue(value, 2);
             },
@@ -284,7 +285,7 @@ class InstitutionalInformation
             hint: "Lokasi",
             textSize: 42.ssp,
             controller: viewmodel.placeController,
-            inputType: TextInputType.number,
+            inputType: TextInputType.text,
             validateInput: (value) {
               return viewmodel.checkValue(value, 3);
             },
@@ -330,7 +331,7 @@ class AccountInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
             isActive: viewmodel.isAccountInformationValid,
             buttonColor: iconColor4,
             textColor: Colors.black87,
-            onClick: viewmodel.next,
+            onClick: viewmodel.register,
           ),
         ),
       ],
@@ -364,7 +365,7 @@ class AccountInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
             hint: "Email",
             textSize: 42.ssp,
             controller: viewmodel.emailController,
-            inputType: TextInputType.text,
+            inputType: TextInputType.emailAddress,
             validateInput: viewmodel.checkEmail,
           ),
           SizedBox(height: 90.h),
@@ -373,7 +374,7 @@ class AccountInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
             hint: "Kata Sandi",
             textSize: 42.ssp,
             controller: viewmodel.passwordController,
-            inputType: TextInputType.number,
+            inputType: TextInputType.visiblePassword,
             validateInput: viewmodel.checkPassword,
           ),
           SizedBox(height: 90.h),
@@ -382,7 +383,7 @@ class AccountInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
             hint: "Konfirmasi Kata Sandi",
             textSize: 42.ssp,
             controller: viewmodel.confirmPasswordController,
-            inputType: TextInputType.number,
+            inputType: TextInputType.visiblePassword,
             validateInput: viewmodel.checkCofirmPassword,
           ),
         ],

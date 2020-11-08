@@ -93,7 +93,8 @@ class LoginPage extends StatelessWidget {
                             height: 150.h,
                             child: FloatingActionButton(
                               child: Icon(Icons.arrow_forward),
-                              onPressed: () {},
+                              onPressed:
+                                  viewmodel.isValid ? viewmodel.login : null,
                               elevation: viewmodel.isValid ? 4 : 0,
                               highlightElevation: 0,
                               backgroundColor: viewmodel.isValid

@@ -42,6 +42,24 @@ class LoginViewmodel extends BaseViewModel with ViewModelLifecycle {
   }
 
   Future<void> registerPage() async {
-    movePage(RegisterPage());
+    await movePage(RegisterPage());
+  }
+
+  Future<void> login() async {
+    // Do Auth here
+    AwesomeDialog dialog = awesomeDialog.showLoadingDialog();
+    Future.delayed(Duration(seconds: 3), () {
+      if (emailController.text == "herih1876@gmail.com" &&
+          passwordController.text == "1234567") {
+        dialog.dissmiss();
+        replacePage(HomePage());
+      } else {
+        dialog.dissmiss();
+
+        awesomeDialog.showErrorDialog(
+            message: "Periksa kembali email dan password Anda",
+            title: "User tidak ditemukan!");
+      }
+    });
   }
 }
