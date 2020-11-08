@@ -326,7 +326,7 @@ class AccountInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
         Align(
           alignment: Alignment(0, 0.9),
           child: ActionButton(
-            text: "Daftar",
+            text: "Daftarkan Saya",
             isActive: viewmodel.isAccountInformationValid,
             buttonColor: iconColor4,
             textColor: Colors.black87,
@@ -338,7 +338,56 @@ class AccountInformation extends ViewModelBuilderWidget<RegisterViewmodel> {
   }
 
   Widget body() {
-    return Container();
+    return Container(
+      width: double.infinity,
+      height: 1920.h,
+      margin: EdgeInsets.symmetric(horizontal: 52.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 90.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.account_circle_rounded),
+              SizedBox(width: 50.w),
+              TextFormat(
+                'Informasi akun',
+                fontWeight: FontWeight.bold,
+                fontSize: 44.ssp,
+              ),
+            ],
+          ),
+          SizedBox(height: 180.h),
+          InputField(
+            prefixIcon: Icon(Icons.alternate_email),
+            hint: "Email",
+            textSize: 42.ssp,
+            controller: viewmodel.emailController,
+            inputType: TextInputType.text,
+            validateInput: viewmodel.checkEmail,
+          ),
+          SizedBox(height: 90.h),
+          InputField(
+            prefixIcon: Icon(MdiIcons.lock),
+            hint: "Kata Sandi",
+            textSize: 42.ssp,
+            controller: viewmodel.passwordController,
+            inputType: TextInputType.number,
+            validateInput: viewmodel.checkPassword,
+          ),
+          SizedBox(height: 90.h),
+          InputField(
+            prefixIcon: Icon(Icons.lock),
+            hint: "Konfirmasi Kata Sandi",
+            textSize: 42.ssp,
+            controller: viewmodel.confirmPasswordController,
+            inputType: TextInputType.number,
+            validateInput: viewmodel.checkCofirmPassword,
+          ),
+        ],
+      ),
+    );
   }
 
   @override

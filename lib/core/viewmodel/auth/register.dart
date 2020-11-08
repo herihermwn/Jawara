@@ -16,21 +16,28 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
       _isPNumberValid && _isNameValid && (imageFile != null);
 
   //* InstitutionalInformation
-  bool _isInstitutional = false;
-  bool _isPosition = false;
-  bool _isPlace = false;
+  bool _isInstitutionalValid = false;
+  bool _isPositionValid = false;
+  bool _isPlaceValid = false;
 
   TextEditingController institutionalController = TextEditingController();
   TextEditingController positionController = TextEditingController();
   TextEditingController placeController = TextEditingController();
 
   bool get isInstitutionalInformationValid =>
-      _isInstitutional && _isPosition && _isPlace;
+      _isInstitutionalValid && _isPositionValid && _isPlaceValid;
 
   //* AccountInformation
+  bool _isEmailValid = false;
+  bool _isPasswordValid = false;
+  bool _isConfirmPasswordValid = false;
+
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   bool get isAccountInformationValid =>
-      _isPNumberValid && _isNameValid && (imageFile != null);
+      _isEmailValid && _isPasswordValid && _isConfirmPasswordValid;
 
   GlobalKey<PageSliderState> sliderKey = GlobalKey();
   int currentIndex = 1;
@@ -66,6 +73,57 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
     };
   }
 
+  Map<String, dynamic> checkEmail(String p1) {
+    bool isValid = isEmail(p1);
+    String errorMessage = "";
+
+    if (!isValid) {
+      errorMessage = "Email tidak valid";
+    }
+
+    _isEmailValid = isValid;
+    notifyListeners();
+    return {
+      "isValid": isValid,
+      "errorMessage": errorMessage,
+    };
+  }
+
+  Map<String, dynamic> checkPassword(String p1) {
+    bool isValid = true;
+    String errorMessage = "";
+
+    if (p1.length < 6) {
+      isValid = false;
+      errorMessage = "Password minimal 6 huruf";
+    }
+
+    confirmPasswordController.clear();
+    _isPasswordValid = isValid;
+    notifyListeners();
+    return {
+      "isValid": isValid,
+      "errorMessage": errorMessage,
+    };
+  }
+
+  Map<String, dynamic> checkCofirmPassword(String p1) {
+    bool isValid = true;
+    String errorMessage = "";
+
+    if (p1 != passwordController.text) {
+      isValid = false;
+      errorMessage = "Password tidak sama";
+    }
+
+    _isConfirmPasswordValid = isValid;
+    notifyListeners();
+    return {
+      "isValid": isValid,
+      "errorMessage": errorMessage,
+    };
+  }
+
   Map<String, dynamic> checkValue(String p1, int code) {
     bool isValid = true;
     String errorMessage = "";
@@ -80,13 +138,13 @@ class RegisterViewmodel extends BaseViewModel with ViewModelLifecycle {
         _isNameValid = isValid;
         break;
       case 1:
-        _isInstitutional = isValid;
+        _isInstitutionalValid = isValid;
         break;
       case 2:
-        _isPosition = isValid;
+        _isPositionValid = isValid;
         break;
       case 3:
-        _isPlace = isValid;
+        _isPlaceValid = isValid;
         break;
       default:
         _isNameValid = isValid;
