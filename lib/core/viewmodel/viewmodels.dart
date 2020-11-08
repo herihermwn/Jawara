@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jawara/app/app.dart';
 import 'package:jawara/app/locator.dart';
 import 'package:jawara/core/service/services.dart';
+import 'package:jawara/shared/shared.dart';
 import 'package:jawara/ui/pages.dart';
+import 'package:page_slider/page_slider.dart';
 import 'package:stacked/stacked.dart';
+import 'dart:io';
 
 // child
 part 'splash/splash.dart';
-part 'auth/auth.dart';
+
+/// [child]
+part 'auth/login.dart';
+part 'auth/register.dart';
 
 //? ----------
 //* Service
 //? ----------
 final navigation = locator<NavigatorService>();
+final imagePicker = locator<ImagePickerService>();
 
 //? -----------
 //* Navigator

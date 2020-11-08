@@ -65,7 +65,7 @@ String imageAsset = "assets/images";
 PreferredSize get noAppBar => PreferredSize(
       preferredSize: Size.fromHeight(0),
       child: AppBar(
-        backgroundColor: iconColor5,
+        backgroundColor: iconColor4,
         brightness: Brightness.dark,
       ),
     );

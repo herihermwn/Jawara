@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 // Child
 part 'navigatior_service.dart';
+part 'image_picker_service.dart';
 
 //? ---------------------------------------------------------------------
 //* Add new service here. Then run command
@@ -19,4 +23,6 @@ abstract class ServicesModule {
   // Custom Service
   @lazySingleton
   NavigatorService get navigatorService;
+  @lazySingleton
+  ImagePickerService get imagePickerService;
 }

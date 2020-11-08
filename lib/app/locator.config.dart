@@ -20,12 +20,15 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final servicesModule = _$ServicesModule();
+  gh.lazySingleton<ImagePickerService>(() => servicesModule.imagePickerService);
   gh.lazySingleton<NavigatorService>(() => servicesModule.navigatorService);
   gh.lazySingleton<SnackbarService>(() => servicesModule.snackbarService);
   return get;
 }
 
 class _$ServicesModule extends ServicesModule {
+  @override
+  ImagePickerService get imagePickerService => ImagePickerService();
   @override
   NavigatorService get navigatorService => NavigatorService();
   @override

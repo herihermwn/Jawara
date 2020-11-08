@@ -1,23 +1,22 @@
 part of '../viewmodels.dart';
 
-class AuthViewmodel extends BaseViewModel with ViewModelLifecycle {
+class LoginViewmodel extends BaseViewModel with ViewModelLifecycle {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isEmailValid = false;
-  bool isPasswordValid = false;
+  bool _isEmailValid = false;
+  bool _isPasswordValid = false;
+
+  bool get isValid => _isEmailValid && _isPasswordValid;
 
   Map<String, dynamic> checkEmail(String p1) {
-    bool isValid = true;
+    bool isValid = isEmail(p1);
     String errorMessage = "";
 
-    RegExp regex = RegExp(emailPattern);
-
-    if (!regex.hasMatch(p1) || p1 == null) {
-      isValid = false;
+    if (!isValid) {
       errorMessage = "Email tidak valid";
     }
 
-    isEmailValid = isValid;
+    _isEmailValid = isValid;
     notifyListeners();
     return {
       "isValid": isValid,
@@ -34,7 +33,7 @@ class AuthViewmodel extends BaseViewModel with ViewModelLifecycle {
       errorMessage = "Password minimal 6 huruf";
     }
 
-    isPasswordValid = isValid;
+    _isPasswordValid = isValid;
     notifyListeners();
     return {
       "isValid": isValid,
@@ -42,4 +41,7 @@ class AuthViewmodel extends BaseViewModel with ViewModelLifecycle {
     };
   }
 
+  Future<void> registerPage() async {
+    movePage(RegisterPage());
+  }
 }

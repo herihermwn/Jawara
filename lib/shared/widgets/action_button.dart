@@ -1,84 +1,34 @@
 part of '../shared.dart';
 
-/// Custom Raised Button
-///
-/// * Function `onClick` must `Future<void> Function()`
-///
-class ActionButton extends StatefulWidget {
-  final Future<void> Function() onClick;
+class ActionButton extends StatelessWidget {
+  final Function onClick;
   final Color buttonColor;
   final Color textColor;
   final String text;
+  final bool isActive;
 
   ActionButton({
     @required this.text,
     @required this.onClick,
+    @required this.isActive,
     this.buttonColor,
     this.textColor,
   });
 
   @override
-  _ActionButtonState createState() => _ActionButtonState(
-        this.onClick,
-        this.buttonColor,
-        this.textColor,
-        this.text,
-      );
-}
-
-class _ActionButtonState extends State<ActionButton> {
-  final Future<void> Function() onClick;
-  final Color buttonColor;
-  final Color textColor;
-  final String text;
-
-  _ActionButtonState(
-    this.onClick,
-    this.buttonColor,
-    this.textColor,
-    this.text,
-  );
-
-  bool isOnProgress = false;
-  bool onHover = false;
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        if (!isOnProgress) {
-          isOnProgress = true;
-          setState(() {
-            onHover = false;
-          });
-          onClick().whenComplete(() {
-            setState(() {
-              isOnProgress = false;
-            });
-          });
-        }
-      },
-      onTapDown: (detail) {
-        setState(() {
-          onHover = true;
-        });
-      },
-      onTapCancel: () {
-        setState(() {
-          onHover = false;
-        });
-      },
-      child: Container(
+      onTap: (isActive) ? onClick : () {},
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 100),
         padding: EdgeInsets.symmetric(
-          vertical: 38.w,
+          vertical: 30.w,
           horizontal: 58.w,
         ),
         decoration: BoxDecoration(
-          boxShadow: (onHover) ? [] : boxShadowBottom,
+          boxShadow: (isActive) ? boxShadowBottom : [],
           borderRadius: BorderRadius.circular(12),
-          color: (isOnProgress)
-              ? Colors.grey.withOpacity(0.5)
-              : buttonColor ?? Colors.green,
+          color: (!isActive) ? disableButton : buttonColor ?? Colors.green,
         ),
         child: TextFormat(
           text ?? "",

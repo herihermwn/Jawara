@@ -35,12 +35,18 @@ dependencies:
   # Inversion of Control
   injectable: ^1.0.4
 
+  # Helper
+  image_picker: ^0.6.7+12
+
   # UI
   cupertino_icons: ^1.0.0
   get: ^3.4.6
   flutter_screenutil: ^3.1.1
   google_fonts: ^1.1.0
   material_design_icons_flutter: ^4.0.5755
+  simple_animations: ^2.2.3
+  steps_indicator: ^1.1.0
+  page_slider: ^0.0.2
 
   # Network
   connectivity: ^0.4.9+3

@@ -12,4 +12,5 @@ part 'utility/helpers.dart';
 part 'widgets/lifecycle_manager.dart';
 part 'widgets/text_format.dart';
 part 'widgets/input_field.dart';
+part 'widgets/back_icon.dart';
 part 'widgets/action_button.dart';

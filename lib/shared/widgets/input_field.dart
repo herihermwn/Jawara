@@ -127,7 +127,7 @@ class _InputFieldState extends State<InputField> {
         ),
         errorStyle: GoogleFonts.poppins(
           color: Colors.red,
-          fontSize: textSize ?? 32.ssp,
+          fontSize: 34.ssp,
           fontWeight: FontWeight.bold,
         ),
         prefixIcon: prefixIcon ?? null,
